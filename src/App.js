@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Form from './Pages/Form';
+import Form from './Pages/Form/Form';
 import Login from './Pages/Connexion/Connexion';
 import React, {useEffect, useState} from 'react';
 import {BrowserRouter,Route, Switch} from 'react-router-dom';

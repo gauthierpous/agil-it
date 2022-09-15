@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
 import './Form.css';
-import logo from '../logo.png'
+import logo from '../../logo.png'
 
 function PostForm() {
 

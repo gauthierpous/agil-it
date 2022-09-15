@@ -20,7 +20,7 @@ h1{
     sans-serif;
 }
 
-form{
+.formPatient form{
     width: 40%;
     background: #016D77;
     border-radius: 2rem;
@@ -30,7 +30,7 @@ form{
     padding: 30px;
 }
 
-input{
+.formPatient input{
     border-radius: 2rem;
     width: 100%;
     padding: 1em;
