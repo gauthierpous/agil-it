@@ -7,57 +7,58 @@ function MainForm() {
 
     const url = "http://35.176.229.91:8080/api/clientIndex/login/";
 
+    const [data, setData] = useState({
+        email: "",
+        password: "",
+    });
+
+    function handle(e) {
+        const newdata = { ...data };
+        newdata[e.target.id] = e.target.value;
+        setData(newdata);
+        console.log(newdata);
+    }
 
     //Function to send the entered data to the server via the API
     function submit(e) {
-/*        e.preventDefault();
-        Axios.post(url, {
-            email: data.email,
-            password: data.password,
-        }).then((res) => {
-            console.log(res.data);
-            if (res.data === "Email incorrect") {
-                ReactDOM.render(
-                    <p>Wrong email or password ! Please try again</p>,
-                    document.getElementById("WrongLogin")
-                );
-            } else if (res.data === "Password incorrect") {
-                ReactDOM.render(
-                    <p>Wrong email or password ! Please try again</p>,
-                    document.getElementById("WrongLogin")
-                );
+        e.preventDefault()
+        if (data.email === "bastien.dubois@gmail.com") {
+            if (data.password === "1234") {
+                window.location.replace(`http://localhost:3000/Dashboard`)
             } else {
-                localStorage.setItem("token", res.data.token);
-                localStorage.setItem("username", res.data.username);
-                localStorage.setItem("id", res.data.userId);
-                localStorage.setItem("userHomeId", res.data.home_RW_key);
-                localStorage.setItem("bulb", "true");
-                localStorage.setItem("barOpened", "true");
-                if (res.data.avatarUrl != null) {
-                    localStorage.setItem("avatarUrl", res.data.avatarUrl);
-                }
-                window.location.replace(`http://localhost:3000/Dashboard`);
+                ReactDOM.render(
+                    <p>Email et/ou mot de passe incorrect</p>,
+                    document.getElementById("WrongLogin")
+                )
             }
-        });*/
+        } else {
+            ReactDOM.render(
+                <p>Email et/ou mot de passe incorrect</p>,
+                document.getElementById("WrongLogin")
+            )
+        }
     }
         return (
             <div className="bodyMain">
-                    <form onSubmit={(e) => submit(e)}>
+                <form>
                         <input
+                            onChange={(e) => handle(e)}
+                            value={data.email}
                             placeholder="Email"
                             type="email"
                             id="email"
                         ></input>
                         <input
+                            onChange={(e) => handle(e)}
+                            value={data.password}
                             placeholder="Password"
                             type="text"
                             id="password"
                         ></input>
 
+                    <div id="WrongLogin"></div>
+
                         <br /> <br />
-                        <div id="buttonContainer">
-                            <button>log in</button>
-                        </div>
                         <br />
                         <br />
                         <br />
@@ -81,29 +82,12 @@ function MainForm() {
                         </a>
                         <br />
                         <br />
-                        <a
-                            href="/ForgottenPassword"
-                            style={{
-                                fontSize: "12px",
-                                fontWeight: "normal",
-                                cursor: "pointer",
-                                color: "white",
-                                textDecoration: "none",
-                                position: "absolute",
-                                top: "80%",
-                                left: "50%",
-                                transform: "translate(-50%, -50%)",
-                            }}
-                        >
-                            {" "}
-                            Forgotten password ?
-                        </a>
                         <br />
                         <br />
-                        <br />
-                    </form>
-
-                <div id="WrongLogin"></div>
+                    <div id="buttonContainer">
+                        <button onClick={(e) => submit(e)}>log in</button>
+                    </div>
+                </form>
             </div>
         );
 }
