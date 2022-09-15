@@ -1,8 +1,11 @@
 .bodyMain{
     width: 50%;
-    margin-top: 150px;
+    margin-top: 15vh;
     margin-right: auto;
     margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .formConnexion{

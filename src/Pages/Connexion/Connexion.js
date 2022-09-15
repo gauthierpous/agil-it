@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Connexion.css";
 import Axios from "axios";
 import ReactDOM from "react-dom";
+import logo from "../../logo.png";
 
 function MainForm() {
 
@@ -40,6 +41,7 @@ function MainForm() {
     }
         return (
             <div className="bodyMain">
+                <img src={logo} alt="logo"/>
                 <form className="formConnexion">
                         <input
                             onChange={(e) => handle(e)}
