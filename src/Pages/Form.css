@@ -1,21 +1,77 @@
-input{
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+.formPatient{
+    width: 80%;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+img{
+    width: 6%;
+}
+
+h1{
+    width: 100%;
+    color: #016D77;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+form{
+    width: 40%;
+    background: #016D77;
     border-radius: 2rem;
-    min-width: 100%;
-    height: 2.5rem;
-    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+
+input{
+    border-radius: 2rem;
+    width: 100%;
+    padding: 1em;
+    margin: 20px 0;
     border: none;
     outline: none;
     color: #3c354e;
     font-size: 1rem;
     font-weight: bold;
-    margin: 8px;
-    display:block;
-    text-align: left;
-    margin-left:auto;
-    margin-right: auto;
 }
+
+#buttonContainer{
+    width: 50%;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+button{
+    width: 100%;
+    padding: 1rem 0;
+    background-color: #83C4BD;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12pt;
+    border: 3px solid #EBF5F7;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+button:hover{
+    background-color: #EBF5F7;
+    border: 3px solid #016D77;
+    color: #016D77
+}
+
+
+
+
 input:focus {
     display: inline-block;
     box-shadow: 0 0 0 0.2rem #b9abe0;
@@ -23,31 +79,11 @@ input:focus {
     border-radius: 2rem;
 }
 input::placeholder {
-    color: #b9abe099;
+    color: #3c354e;
     font-weight: 100;
     font-size: 1rem;
 }
 
-.buttonContainer{
-    margin: 2rem 0 2rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-button{
-    background: linear-gradient(to right, #14163c 0%, #03217b 79%);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    height: 3rem;
-    border: none;
-    color: white;
-    border-radius: 2rem;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-    margin: 5px;
-}
 .pass1{
     font-style: italic;
     position: absolute;

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
 import './Form.css';
+import logo from '../logo.png'
 
 function PostForm() {
 
@@ -52,27 +53,48 @@ function PostForm() {
 
 
     return (
-        <div className="form">
+        <div className="formPatient">
+            <img src={logo} alt="logo"/>
+            <h1>Renseignez les informations</h1>
             <form onSubmit={(e)=> submit(e)}>
-                <br /><br /><br /><br /><br />
-                <input onChange={(e)=>handle(e)} id="name" value={data.name} placeholder="Username*" type="text" autoComplete="on" required></input>
-                <input onChange={(e)=>handle(e)} id="firstname" value={data.firstname} placeholder="First name" type="text"></input>
-                <input onChange={(e)=>handle(e)} id="lastname" value={data.lastname} placeholder="Last name" type="text"></input>
-                <input onChange={(e)=>handle(e)} id="date" value={data.date} placeholder="Date of Birth" type="date"></input>
-                <input onChange={(e)=>handle(e)} id="password" value={data.password} placeholder="Password*" required style={{marginBottom:'10px'}}></input>
-
-                <input onChange={(e)=>handle(e)} id="email" value={data.email} placeholder="Email*" type="email" required style={{marginTop:'100px'}}></input>
-                <input onChange={(e)=>handle(e)} id="phone" value={data.phone} placeholder="Phone" type="tel" pattern="[0-9]{11}"></input>
-
-                <div id='Err'></div>
-
-                <br /><br />
-
-                <div id="buttonContainer">
-                    <button>Submit</button>
-                </div>
+                <input type="text" id="poids" placeholder="Poids" required/>
+                <input type="text" id="taille" placeholder="Taille" required/>
+                <input type="text" id="tension" placeholder="Tension artérielle" required/>
+                <input type="text" id="temperature" placeholder="Température" required/>
             </form>
 
+            <form onSubmit={(e)=> submit(e)}>
+
+                {/*Champs : glycémie,
+                estimated GFR
+                Imaging results like bone density or fetal measurements
+                Clinical Findings* such as abdominal tenderness
+                Device measurements such as EKG data or Pulse Oximetry data
+                Clinical assessment tools such as APGAR or a Glasgow Coma Score
+                Personal characteristics: such as eye-color
+                Social history like tobacco use, family support, or cognitive status
+                Envoi du formulaire d'analyse (exemple : glucose)*/}
+
+                <input type="text" id="glycemie" placeholder="Glycémie" required/>
+                <input type="text" id="GFR" placeholder="Taux de filtration glomérulaire" required/>
+                <input type="text" id="imagingResult" placeholder="Densité osseuse" required/>
+                <input type="text" id="glycemie" placeholder="Oximétrie de pouls" required/>
+
+                {/*<br /><br /><br /><br /><br />*/}
+                {/*<input onChange={(e)=>handle(e)} id="name" value={data.name} placeholder="Username*" type="text" autoComplete="on" required></input>*/}
+                {/*<input onChange={(e)=>handle(e)} id="firstname" value={data.firstname} placeholder="First name" type="text"></input>*/}
+                {/*<input onChange={(e)=>handle(e)} id="lastname" value={data.lastname} placeholder="Last name" type="text"></input>*/}
+                {/*<input onChange={(e)=>handle(e)} id="date" value={data.date} placeholder="Date of Birth" type="date"></input>*/}
+                {/*<input onChange={(e)=>handle(e)} id="password" value={data.password} placeholder="Password*" required style={{marginBottom:'10px'}}></input>*/}
+
+                {/*<input onChange={(e)=>handle(e)} id="email" value={data.email} placeholder="Email*" type="email" required style={{marginTop:'100px'}}></input>*/}
+                {/*<input onChange={(e)=>handle(e)} id="phone" value={data.phone} placeholder="Phone" type="tel" pattern="[0-9]{11}"></input>*/}
+
+                {/*<div id='Err'></div>*/}
+
+                {/*<br /><br />*/}
+            </form>
+            <div id="buttonContainer"><button>Valider</button></div>
         </div>
     );
 }
