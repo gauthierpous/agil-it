@@ -1,4 +1,4 @@
-.formPatient{
+.formPatient, .registrationForm{
     width: 80%;
     margin-top: 20vh;
     margin-left: auto;
@@ -23,17 +23,38 @@ h1{
     sans-serif;
 }
 
-.formPatient form{
+.registrationForm form{
+    width: 100% !important;
+}
+
+.formPatient form, .registrationForm form{
     width: 40%;
     background: #016D77;
     border-radius: 2rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
     padding: 30px;
 }
 
-.formPatient input{
+.registrationForm .formInput{
+    width: 40%;
+    text-align: left;
+    margin: 20px 0;
+}
+
+.registrationForm label{
+    color: #EBF5F7;
+    font-size: 1.5em;
+    text-align: left;
+    width: 100%;
+}
+
+.registrationForm input{
+    margin: 10px 0 0 0 !important;
+}
+
+.formPatient input, .registrationForm input{
     border-radius: 2rem;
     width: 100%;
     padding: 1em;
@@ -94,7 +115,4 @@ input::placeholder {
     top: 65%;
     transform: translate(-50%, -50%);
 }
-
-
-
 
