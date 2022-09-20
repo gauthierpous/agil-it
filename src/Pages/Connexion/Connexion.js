@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Connexion.css";
 import Axios from "axios";
 import ReactDOM from "react-dom";
+import logo from "../../logo.png";
 
 function MainForm() {
 
@@ -41,7 +42,8 @@ function MainForm() {
     }
         return (
             <div className="bodyMain">
-                <form>
+                <img src={logo} alt="logo"/>
+                <form className="formConnexion">
                         <input
                             onChange={(e) => handle(e)}
                             value={data.email}
@@ -52,41 +54,15 @@ function MainForm() {
                         <input
                             onChange={(e) => handle(e)}
                             value={data.password}
-                            placeholder="Password"
+                            placeholder="Mot de passe"
                             type="text"
                             id="password"
                         ></input>
 
 
 
-                        <br /> <br />
-                        <br />
-                        <br />
-                        <br />
-                        <a
-                            href="/SelectID"
-                            style={{
-                                fontSize: "14px",
-                                fontWeight: "bold",
-                                cursor: "pointer",
-                                color: "white",
-                                textDecoration: "none",
-                                textTransform: "uppercase",
-                                position: "absolute",
-                                top: "70%",
-                                left: "50%",
-                                transform: "translate(-50%, -50%)",
-                            }}
-                        >
-                            {" "}
-                            Sign Up{" "}
-                        </a>
-                        <br />
-                        <br />
-                        <br />
-                        <br />
                     <div id="buttonContainer">
-                        <button onClick={(e) => submit(e)}>log in</button>
+                        <button onClick={(e) => submit(e)}>Se connecter</button>
                     </div>
                     <div id="WrongLogin"></div>
                 </form>
