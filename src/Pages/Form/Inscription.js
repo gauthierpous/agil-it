@@ -45,6 +45,7 @@ function RegistrationForm() {
             .then(res=>{
                 console.log(res.data);
                 console.log("Patient créé");
+                window.location.replace(`http://localhost:3000`)
             })
             .catch(error => {
                 console.log(error.response);

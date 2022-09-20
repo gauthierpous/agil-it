@@ -12,12 +12,14 @@ function ProfilPage() {
     const [nom, setNom] = useState([]);
     const [dateDeNaissance, setDateDeNaissance] = useState([]);
     const [genre, setGenre] = useState([]);
+    const [id, setId] = useState([]);
 
     useEffect(() => {
         const asyncFn = async () => {
             try {
                 let result = await fetch(url);
                 result = await result.json();
+                setId(result.id)
                 setPrenom(result.name[0].given[0])
                 setNom(result.name[0].family)
                 setDateDeNaissance(result.birthDate)
@@ -29,6 +31,17 @@ function ProfilPage() {
         };
         asyncFn();
     }, []);
+
+    const deleteMyProfile = (e) => {
+        e.preventDefault();
+        console.log("Trying to delete")
+        Axios.delete(url)
+            .then((res) => {
+                    console.log("User deleted");
+                    window.location.replace("http://localhost:3000");
+                }
+            )
+    }
 
     return (
         <div className="profil">
@@ -55,6 +68,9 @@ function ProfilPage() {
                     <div className="champProfil">
                         <p><i>E-mail</i></p>
                         <p>bastien.dubois@gmail.com</p>
+                    </div>
+                    <div className="deleteButton">
+                        <button id="buttonDelete" onClick={(e)=> deleteMyProfile(e)}>Supprimer mon profil</button>
                     </div>
                 </div>
                 <div className="diagnostic">

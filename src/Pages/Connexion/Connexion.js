@@ -26,7 +26,7 @@ function MainForm() {
         if (data.email === "bastien.dubois@gmail.com") {
             if (data.password === "1234") {
                 localStorage.setItem("id", "1234")
-                window.location.replace(`http://localhost:3000/Dashboard`)
+                window.location.replace(`http://localhost:3000/profil`)
             } else {
                 ReactDOM.render(
                     <p>Email et/ou mot de passe incorrect</p>,
