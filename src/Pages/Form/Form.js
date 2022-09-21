@@ -419,9 +419,9 @@ function PostForm() {
             <form>
 
                 <input onChange={(e)=>handle(e)} value={data.glycemie} type="number" id="glycemie" placeholder="Hémoglobine glyquée"/>
-                <input onChange={(e)=>handle(e)} value={data.filtration} type="text" id="GFR" placeholder="Taux de filtration glomérulaire"/>
-                <input onChange={(e)=>handle(e)} value={data.densite} type="text" id="imagingResult" placeholder="Densité osseuse"/>
-                <input onChange={(e)=>handle(e)} value={data.pouls} type="text" id="glycemie2" placeholder="Oximétrie de pouls"/>
+                <input onChange={(e)=>handle(e)} value={data.filtration} type="text" id="filtration" placeholder="Taux de filtration glomérulaire"/>
+                <input onChange={(e)=>handle(e)} value={data.densite} type="text" id="densite" placeholder="Densité osseuse"/>
+                <input onChange={(e)=>handle(e)} value={data.pouls} type="text" id="pouls" placeholder="Oximétrie de pouls"/>
                 <div id="WrongGlycemie"></div>
             </form>
             <div id="success"></div>
