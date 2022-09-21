@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
 import './Diagnostic.css';
@@ -6,52 +6,23 @@ import logo from '../../logo.png'
 
 function Diagnostic() {
 
-    const url="http://35.176.229.91:8080/api/endusers/byHome/"
-
-    const [data, setData] = useState({
-        name:"",
-        firstname:"",
-        lastname:"",
-        date:"",
-        password:"",
-        email:"",
-        phone:"",
-    });
-
+    const url="https://fhir.alliance4u.io/api/diagnostic-report?subject.reference=patientGroupeMarisolLucas"
     const [count, setCount] = useState(0);
+    const [maladie, setMaladie] = useState([]);
 
-
-    //Function to send the entered data to the server via the API
-    function submit(e){
-        e.preventDefault();
-        Axios.post(url,{
-            name: data.name,
-            firstname: data.firstname,
-            lastname: data.lastname,
-            date: data.date,
-            password: data.password,
-            email: data.email,
-            phone: parseInt(data.phone)
-        })
-            .then(res=>{
-                console.log(res.data);
-                if (res.data === "New end user created."){
-                    window.location.replace(`http://localhost:3000`);
-                }else if (res.data === "Error creating new end user."){
-                    console.log('error')
-                    ReactDOM.render(<p>This username/email already exists, please choose a new one.</p>, document.getElementById('Err'));
-                }
-            })
-    }
-
-    //Function to store the user's input in value
-    function handle(e){
-        const newdata={...data}
-        newdata[e.target.id] = e.target.value
-        setData(newdata)
-        console.log(newdata)
-    }
-
+    useEffect(() => {
+        const asyncFn = async () => {
+            try {
+                let result = await fetch(url);
+                result = await result.json();
+                setMaladie(result[result.length-1].conclusion);
+                console.log(result);
+            } catch {
+                console.log("Error")
+            }
+        };
+        asyncFn();
+    }, []);
 
     let isDisplayed = 1;
     function change(){
@@ -106,11 +77,11 @@ function Diagnostic() {
             <div id="groupe3" className="group">
                 <h2>Quelle pathologie pensez-vous avoir ?</h2>
                 <div><button className="buttonDiagnostic" onClick={() => setCount(count + 1)}>Cancer du lobe d'oreille</button></div>
-                <div><button onClick={change} className="buttonDiagnostic">Diabète</button></div>
+                <div><button onClick={change} className="buttonDiagnostic">{maladie}</button></div>
                 <div><button className="buttonDiagnostic" onClick={() => setCount(count + 1)}>Calvitie de la moustache</button></div>
             </div>
             <div id="groupe4" className="group">
-                <h1>Vous êtes effectivement atteint de la donnée envoyée</h1>
+                <h1>Vous êtes effectivement atteint de {maladie}</h1>
                 <h2>Votre score est de {count} fautes ! C'est pas mal du tout</h2>
             </div>
         </div>

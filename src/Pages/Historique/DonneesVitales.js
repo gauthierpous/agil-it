@@ -65,12 +65,12 @@ function DonneesVitales() {
                 </li>
             </ul>
             <img id="logo" src={logo} alt="logo"/>
-            <h1>Historik de skon envoua</h1>
+            <h1>Historique des données envoyées</h1>
             <ul id="historique">
                 <li>
                     <p>Nom du diagnostic</p>
-                    <p>Donnée (genre taille)</p>
-                    <p><b>Valeur donnée (Genre 276cm)</b></p>
+                    <p>Donnée</p>
+                    <p><b>Valeur</b></p>
                 </li>
 
                 {observations.map((item, index) => (
