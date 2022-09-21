@@ -6,39 +6,48 @@ import logo from '../../logo.png'
 
 function PostForm() {
 
-    const url="http://35.176.229.91:8080/api/endusers/byHome/"
+    const url="https://fhir.alliance4u.io/"
+    const id = localStorage.getItem("id")
 
     const [data, setData] = useState({
-        name:"",
-        firstname:"",
-        lastname:"",
-        date:"",
-        password:"",
-        email:"",
-        phone:"",
-
+        poids:"",
+        taille:"",
+        tension:"",
+        temperature:"",
+        glycemie:"",
+        filtration:"",
+        densite:"",
+        pouls:""
     })
 
 
     //Function to send the entered data to the server via the API
     function submit(e){
         e.preventDefault();
-        Axios.post(url,{
-            name: data.name,
-            firstname: data.firstname,
-            lastname: data.lastname,
-            date: data.date,
-            password: data.password,
-            email: data.email,
-            phone: parseInt(data.phone)
+        Axios.post(url + id,{
+            poids: data.poids,
+            taille:data.taille,
+            tension:data.tension,
+            temperature:data.temperature,
+            glycemie:data.glycemie,
+            filtration:data.filtration,
+            densite:data.densite,
+            pouls:data.pouls
         })
             .then(res=>{
-                console.log(res.data);
-                if (res.data === "New end user created."){
-                    window.location.replace(`http://localhost:3000`);
-                }else if (res.data === "Error creating new end user."){
-                    console.log('error')
-                    ReactDOM.render(<p>This username/email already exists, please choose a new one.</p>, document.getElementById('Err'));
+                if (res.data) {
+                    console.log("Success")
+                ReactDOM.render(
+                    <p>Données envoyées</p>,
+                    document.getElementById("success")
+                )
+                }
+                else {
+                    console.log("Error")
+                    ReactDOM.render(
+                        <p>Données non envoyées</p>,
+                        document.getElementById("error")
+                    )
                 }
             })
     }
@@ -56,14 +65,14 @@ function PostForm() {
         <div className="formPatient">
             <img src={logo} alt="logo"/>
             <h1>Renseignez les informations</h1>
-            <form onSubmit={(e)=> submit(e)}>
-                <input type="text" id="poids" placeholder="Poids" required/>
-                <input type="text" id="taille" placeholder="Taille" required/>
-                <input type="text" id="tension" placeholder="Tension artérielle" required/>
-                <input type="text" id="temperature" placeholder="Température" required/>
+            <form>
+                <input onChange={(e)=>handle(e)} value={data.poids} type="text" id="poids" placeholder="Poids" required/>
+                <input onChange={(e)=>handle(e)} value={data.taille} type="text" id="taille" placeholder="Taille" required/>
+                <input onChange={(e)=>handle(e)} value={data.tension} type="text" id="tension" placeholder="Tension artérielle" required/>
+                <input onChange={(e)=>handle(e)} value={data.temperature} type="text" id="temperature" placeholder="Température" required/>
             </form>
 
-            <form onSubmit={(e)=> submit(e)}>
+            <form>
 
                 {/*Champs : glycémie,
                 estimated GFR
@@ -75,10 +84,10 @@ function PostForm() {
                 Social history like tobacco use, family support, or cognitive status
                 Envoi du formulaire d'analyse (exemple : glucose)*/}
 
-                <input type="text" id="glycemie" placeholder="Glycémie" required/>
-                <input type="text" id="GFR" placeholder="Taux de filtration glomérulaire" required/>
-                <input type="text" id="imagingResult" placeholder="Densité osseuse" required/>
-                <input type="text" id="glycemie" placeholder="Oximétrie de pouls" required/>
+                <input onChange={(e)=>handle(e)} value={data.glycemie} type="text" id="glycemie" placeholder="Glycémie" required/>
+                <input onChange={(e)=>handle(e)} value={data.filtration} type="text" id="GFR" placeholder="Taux de filtration glomérulaire" required/>
+                <input onChange={(e)=>handle(e)} value={data.densite} type="text" id="imagingResult" placeholder="Densité osseuse" required/>
+                <input onChange={(e)=>handle(e)} value={data.pouls} type="text" id="glycemie2" placeholder="Oximétrie de pouls" required/>
 
                 {/*<br /><br /><br /><br /><br />*/}
                 {/*<input onChange={(e)=>handle(e)} id="name" value={data.name} placeholder="Username*" type="text" autoComplete="on" required></input>*/}
@@ -94,7 +103,9 @@ function PostForm() {
 
                 {/*<br /><br />*/}
             </form>
-            <div id="buttonContainer"><button>Valider</button></div>
+            <div id="success"></div>
+            <div id="error"></div>
+            <div id="buttonContainer"><button onClick={(e) => submit(e)}>Valider</button></div>
         </div>
     );
 }

@@ -25,7 +25,8 @@ function MainForm() {
         e.preventDefault()
         if (data.email === "bastien.dubois@gmail.com") {
             if (data.password === "1234") {
-                window.location.replace(`http://localhost:3000/Dashboard`)
+                localStorage.setItem("id", "1234")
+                window.location.replace(`http://localhost:3000/profil`)
             } else {
                 ReactDOM.render(
                     <p>Email et/ou mot de passe incorrect</p>,
@@ -58,11 +59,12 @@ function MainForm() {
                             id="password"
                         ></input>
 
-                    <div id="WrongLogin"></div>
+
 
                     <div id="buttonContainer">
                         <button onClick={(e) => submit(e)}>Se connecter</button>
                     </div>
+                    <div id="WrongLogin"></div>
                 </form>
             </div>
         );
