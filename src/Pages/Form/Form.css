@@ -8,7 +8,7 @@
     flex-wrap: wrap;
 }
 
-img{
+img#logo{
     width: 6%;
     position: absolute;
     top: 20px;
@@ -116,3 +116,46 @@ input::placeholder {
     transform: translate(-50%, -50%);
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+    top : 20px;
+    right : 12%;
+    font-size: 20pt;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #016D77;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.5s
+}
+
+li a:hover {
+    color: #7ca8d4;
+    font-weight: bold;
+}
+
+li#active a{
+    color: #c0c0c0;
+}
+
+li#active a:hover{
+    color: #c0c0c0;
+    font-weight: normal;
+}
+img#notification, #notif2{
+    width: 6%;
+    position: absolute;
+    top: 10px;
+    right: 0;
+}

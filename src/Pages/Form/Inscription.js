@@ -101,7 +101,7 @@ function RegistrationForm() {
 
     return (
         <div className="registrationForm">
-            <img src={logo} alt="logo"/>
+            <img id="logo" src={logo} alt="logo"/>
             <h1>Renseignez vos informations</h1>
             <form onSubmit={(e)=> submit(e)}>
                 <div className="formInput">
