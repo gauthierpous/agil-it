@@ -42,7 +42,7 @@ function MainForm() {
     }
         return (
             <div className="bodyMain">
-                <img src={logo} alt="logo"/>
+                <img src={logo} id="logo" alt="logo"/>
                 <form className="formConnexion">
                         <input
                             onChange={(e) => handle(e)}

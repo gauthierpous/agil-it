@@ -61,12 +61,18 @@ function ProfilPage() {
     return (
         <div className="profil">
             <a href="../dashboard"><img id="logo" src={logo} alt="logo"/></a>
-            <ul>
+            <ul id="navbar">
                 <li id="active">
                     <a href="#">Mon Profil</a>
                 </li>
                 <li>
                     <a href="./dashboard">Envoyer ma demande de diagnostic</a>
+                </li>
+                <li>
+                    <a href="./historique">Diagnostics</a>
+                </li>
+                <li>
+                    <a href="./donneesVitales">Évolutions</a>
                 </li>
                 <li>
                     <a href="#"><img id="notification" src={cloche} alt={"cloche"}/></a>

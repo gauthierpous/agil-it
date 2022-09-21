@@ -7,6 +7,8 @@ import profil from "./Pages/Profil/Profil";
 import Inscription from "./Pages/Form/Inscription";
 import Diagnostic from "./Pages/Diagnostic/Diagnostic";
 import testNotif from "./testNotif";
+import Historique from "./Pages/Historique/Historique";
+import DonneesVitales from "./Pages/Historique/DonneesVitales";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/inscription" exact component={Inscription} />
           <Route path="/diagnostic" exact component={Diagnostic} />
           <Route path="/test" exact component={testNotif} />
+          <Route path="/historique" exact component={Historique} />
+          <Route path="/donneesVitales" exact component={DonneesVitales} />
           <Route path="/" exact component={Login} />
       </Switch>
         </BrowserRouter>

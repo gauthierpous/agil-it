@@ -384,6 +384,12 @@ function PostForm() {
                     <a href="#">Envoyer ma demande de diagnostic</a>
                 </li>
                 <li>
+                    <a href="./historique">Diagnostics</a>
+                </li>
+                <li>
+                    <a href="./donneesVitales">Évolutions</a>
+                </li>
+                <li>
                     <img id="notification" className="active" style={{display:'block'}} onClick={myFunction} src={cloche} alt={"cloche"}/>
                     <a href="http://localhost:3000/profil"><img id="notif2" className="active" style={{display:'none'}} onClick={myFunction2}  src={cloche2} alt={"clocheRouge"}/></a>
                 </li>
