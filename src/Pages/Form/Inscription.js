@@ -101,31 +101,35 @@ function RegistrationForm() {
 
     return (
         <div className="registrationForm">
-            <img id="logo" src={logo} alt="logo"/>
+            <a href="../profil"><img id="logo" src={logo} alt="logo"/></a>
             <h1>Renseignez vos informations</h1>
             <form onSubmit={(e)=> submit(e)}>
-                <div className="formInput">
-                    <label htmlFor="nom">Nom</label>
-                    <input onChange={(e)=>handle(e)} type="text" id="nom" required/>
-                </div>
-                <div className="formInput">
-                    <label htmlFor="prenom">Prénom</label>
-                    <input onChange={(e)=>handle(e)} type="text" id="prenom" required/>
-                </div>
-                <div className="formInput">
-                    <label htmlFor="dateDeNaissance">Date de naissance</label>
-                    <input onChange={(e)=>handle(e)} type="date" id="dateDeNaissance" required/>
+                <div className="troisInput">
+                    <div className="formInput">
+                        <label htmlFor="nom">Nom</label>
+                        <input onChange={(e)=>handle(e)} type="text" id="nom" required/>
+                    </div>
+                    <div className="formInput">
+                        <label htmlFor="prenom">Prénom</label>
+                        <input onChange={(e)=>handle(e)} type="text" id="prenom" required/>
+                    </div>
+                    <div className="formInput">
+                        <label htmlFor="dateDeNaissance">Date de naissance</label>
+                        <input onChange={(e)=>handle(e)} type="date" id="dateDeNaissance" required/>
+                    </div>
                 </div>
                 <div className="formInput">
                     <label htmlFor="genre">Sexe</label>
                     <select onChange={(e)=>handle(e)} type="text" id="genre" required>
-                        <option>male</option>
-                        <option>female</option>
+                        <option disabled selected>Sélectionnez votre sexe</option>
+                        <option value="female">Femme</option>
+                        <option value="male">Homme</option>
                     </select>
                 </div>
-                <div className="medecinReferent">
+                <div className="formInput">
                     <label htmlFor="genre">Médecin référent</label>
                     <select id="dropdown" onChange={handleChange}>
+                        <option disabled selected>Sélectionnez votre médecin</option>
                     {practitionerNames.map((name) => (
                         <option label={name.name[0].family} value={name.id}></option>
                         ))
@@ -140,7 +144,7 @@ function RegistrationForm() {
                     <label htmlFor="motDePasse">Mot de passe</label>
                     <input type="password" id="motDePasse" required/>
                 </div>
-                <div id="buttonContainer"><button>Valider / Inscription</button></div>
+                <div id="buttonContainer"><button>Inscription</button></div>
             </form>
         </div>
     );
