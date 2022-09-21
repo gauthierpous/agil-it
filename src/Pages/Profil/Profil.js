@@ -82,11 +82,11 @@ function ProfilPage() {
             <h1>Mon profil patient</h1>
             <div className="zoneProfil">
                 <div className="infoPerso">
-                    <div className="champProfil">
-                        <p id="first"><i>Prénom</i></p>
+                    <div className="champProfil first">
+                        <p><i>Prénom</i></p>
                         <p>{prenom}</p>
                     </div>
-                    <div className="champProfil">
+                    <div className="champProfil first">
                         <p><i>Nom</i></p>
                         <p>{nom}</p>
                     </div>
@@ -106,8 +106,11 @@ function ProfilPage() {
                         <p><i>Médecin référent</i></p>
                         <p>Alda Mayer</p>
                     </div>
-                    <div className="champProfil">
-                        <button id="buttonDelete" onClick={(e)=> deleteMyProfile(e)}>Supprimer mon profil</button>
+                    <div style={{marginRight:'50px', width: '100%'}}>
+                        <div className="boutons">
+                            <button id="buttonDelete" onClick={(e)=> deleteMyProfile(e)}>Supprimer mon profil</button>
+                            <button id="deconnexion" onClick={() => window.location.replace("http://localhost:3000/")}>Déconnexion</button>
+                        </div>
                     </div>
                 </div>
                 <div className="diagnostic">
