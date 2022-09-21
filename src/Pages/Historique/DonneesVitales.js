@@ -64,30 +64,31 @@ function DonneesVitales() {
                     <a href="http://localhost:3000/profil"><img id="notif2" className="active" style={{display:'none'}} onClick={myFunction2}  src={cloche2} alt={"clocheRouge"}/></a>
                 </li>
             </ul>
-            <img id="logo" src={logo} alt="logo"/>
+            <a href="./profil"><img id="logo" src={logo} alt="logo"/></a>
             <h1>Historique des données envoyées</h1>
-            <ul id="historique">
-                <li>
-                    <p>Nom du diagnostic</p>
-                    <p>Donnée</p>
-                    <p><b>Valeur</b></p>
-                </li>
+            <table id="historique">
+                <tr  id="titre">
+                    <td>Nom du diagnostic</td>
+                    <td>Donnée</td>
+                    <td>Valeur</td>
+                    <td> Suppression</td>
+                </tr>
 
                 {observations.map((item, index) => (
-                    <li>
-                        <p>{item.resourceType}</p>
-                        <p>{item.code.coding[0].display}</p>
-                        <p>{item.valueQuantity.value} {item.valueQuantity.unit}</p>
-                        <p>
+                    <tr>
+                        <td>{item.resourceType}</td>
+                        <td>{item.code.coding[0].display}</td>
+                        <td>{item.valueQuantity.value} {item.valueQuantity.unit}</td>
+                        <td>
                             <button id="buttonDeleteObservation" onClick={(event) => {
                                 deleteObservation(event, item.id)}}>
                                 Supprimer
                             </button>
-                        </p>
-                    </li>
+                        </td>
+                    </tr>
                     )
                 )}
-            </ul>
+            </table>
         </div>
     );
 }

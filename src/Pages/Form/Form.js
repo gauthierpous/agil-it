@@ -27,45 +27,52 @@ function PostForm() {
     function submit(e){
         e.preventDefault();
         if (data.glycemie !== "") {
-            Axios.post(url,{
-                resourceType: "Observation",
-                status: "final",
-                code: {
-                    coding: [
+            if (data.glycemie > 20) {
+                ReactDOM.render(
+                    <p>Cette valeur de glycémie n'est pas valable</p>,
+                    document.getElementById("WrongGlycemie"))
+            }
+            else {
+                Axios.post(url, {
+                    resourceType: "Observation",
+                    status: "final",
+                    code: {
+                        coding: [
+                            {
+                                display: "Hémoglobine glyquée"
+                            }
+                        ]
+                    },
+                    subject: {
+                        reference: "patientGroupeMarisolLucas",
+                        display: "Bastien Dubois"
+                    },
+                    issued: "2022-06-16T10:21:08-07:00",
+                    performer: [
                         {
-                            display: "Hémoglobine glyquée"
+                            reference: "f-201",
+                            display: "Alda Mayer"
                         }
-                    ]
-                },
-                subject: {
-                    reference: "patientGroupeMarisolLucas",
-                    display: "Bastien Dubois"
-                },
-                issued: "2022-06-16T10:21:08-07:00",
-                performer: [
-                    {
-                        reference: "f-201",
-                        display: "Alda Mayer"
+                    ],
+                    effectiveDateTime: "2022-06-16T10:21:08-07:00",
+                    valueQuantity: {
+                        value: Number(data.glycemie),
+                        unit: "%",
+                        system: "http://unitsofmeasure.org",
+                        code: "%"
                     }
-                ],
-                effectiveDateTime : "2022-06-16T10:21:08-07:00",
-                valueQuantity: {
-                    value: Number(data.glycemie),
-                    unit: "%",
-                    system: "http://unitsofmeasure.org",
-                    code: "%"
-                }
-            }, {
-                headers: headers
-            })
-                .then(res=>{
-                    if (res.data) {
-                        console.log("Success")
-                    }
-                    else {
-                        console.log("Error")
-                    }
+                }, {
+                    headers: headers
                 })
+                    .then(res => {
+                        if (res.data) {
+                            console.log("Success")
+                            window.location.replace('http://localhost:3000/dashboard')
+                        } else {
+                            console.log("Error")
+                        }
+                    })
+            }
         }
         if (data.poids !== "") {
             Axios.post(url,{
@@ -102,6 +109,7 @@ function PostForm() {
                 .then(res=>{
                     if (res.data) {
                         console.log("Success")
+                        window.location.replace('http://localhost:3000/dashboard')
                     }
                     else {
                         console.log("Error")
@@ -143,6 +151,7 @@ function PostForm() {
                 .then(res=>{
                     if (res.data) {
                         console.log("Success")
+                        window.location.replace('http://localhost:3000/dashboard')
                     }
                     else {
                         console.log("Error")
@@ -184,6 +193,7 @@ function PostForm() {
                 .then(res=>{
                     if (res.data) {
                         console.log("Success")
+                        window.location.replace('http://localhost:3000/dashboard')
                     }
                     else {
                         console.log("Error")
@@ -225,6 +235,7 @@ function PostForm() {
                 .then(res=>{
                     if (res.data) {
                         console.log("Success")
+                        window.location.replace('http://localhost:3000/dashboard')
                     }
                     else {
                         console.log("Error")
@@ -266,6 +277,7 @@ function PostForm() {
                 .then(res=>{
                     if (res.data) {
                         console.log("Success")
+                        window.location.replace('http://localhost:3000/dashboard')
                     }
                     else {
                         console.log("Error")
@@ -307,6 +319,7 @@ function PostForm() {
                 .then(res=>{
                     if (res.data) {
                         console.log("Success")
+                        window.location.replace('http://localhost:3000/dashboard')
                     }
                     else {
                         console.log("Error")
@@ -348,13 +361,13 @@ function PostForm() {
                 .then(res=>{
                     if (res.data) {
                         console.log("Success")
+                        window.location.replace('http://localhost:3000/dashboard')
                     }
                     else {
                         console.log("Error")
                     }
                 })
         }
-        //window.location.replace('http://localhost:3000/dashboard')
     }
 
     //Function to store the user's input in value
@@ -397,19 +410,19 @@ function PostForm() {
             </ul>
             <h1>Renseignez les informations</h1>
             <form>
-                <input onChange={(e)=>handle(e)} value={data.poids} type="text" id="poids" placeholder="Poids (kg)" required/>
-                <input onChange={(e)=>handle(e)} value={data.taille} type="text" id="taille" placeholder="Taille (cm)" required/>
-                <input onChange={(e)=>handle(e)} value={data.tension} type="text" id="tension" placeholder="Tension artérielle" required/>
-                <input onChange={(e)=>handle(e)} value={data.temperature} type="text" id="temperature" placeholder="Température" required/>
+                <input onChange={(e)=>handle(e)} value={data.poids} type="text" id="poids" placeholder="Poids (kg)"/>
+                <input onChange={(e)=>handle(e)} value={data.taille} type="text" id="taille" placeholder="Taille (cm)"/>
+                <input onChange={(e)=>handle(e)} value={data.tension} type="text" id="tension" placeholder="Tension artérielle"/>
+                <input onChange={(e)=>handle(e)} value={data.temperature} type="text" id="temperature" placeholder="Température"/>
             </form>
 
             <form>
 
-                <input onChange={(e)=>handle(e)} value={data.glycemie} type="number" id="glycemie" placeholder="Hémoglobine glyquée" required/>
-                <input onChange={(e)=>handle(e)} value={data.filtration} type="text" id="GFR" placeholder="Taux de filtration glomérulaire" required/>
-                <input onChange={(e)=>handle(e)} value={data.densite} type="text" id="imagingResult" placeholder="Densité osseuse" required/>
-                <input onChange={(e)=>handle(e)} value={data.pouls} type="text" id="glycemie2" placeholder="Oximétrie de pouls" required/>
-
+                <input onChange={(e)=>handle(e)} value={data.glycemie} type="number" id="glycemie" placeholder="Hémoglobine glyquée"/>
+                <input onChange={(e)=>handle(e)} value={data.filtration} type="text" id="GFR" placeholder="Taux de filtration glomérulaire"/>
+                <input onChange={(e)=>handle(e)} value={data.densite} type="text" id="imagingResult" placeholder="Densité osseuse"/>
+                <input onChange={(e)=>handle(e)} value={data.pouls} type="text" id="glycemie2" placeholder="Oximétrie de pouls"/>
+                <div id="WrongGlycemie"></div>
             </form>
             <div id="success"></div>
             <div id="error"></div>

@@ -64,7 +64,7 @@ function DonneesVitales() {
                     <a href="http://localhost:3000/profil"><img id="notif2" className="active" style={{display:'none'}} onClick={myFunction2}  src={cloche2} alt={"clocheRouge"}/></a>
                 </li>
             </ul>
-            <img id="logo" src={logo} alt="logo"/>
+            <a href="./profil"><img id="logo" src={logo} alt="logo"/></a>
             <h1>Historique des diagnostics</h1>
             <ul id="historique">
                 <li>
