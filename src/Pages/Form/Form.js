@@ -183,9 +183,9 @@ function PostForm() {
                 effectiveDateTime : "2022-06-16T10:21:08-07:00",
                 valueQuantity: {
                     value: Number(data.filtration),
-                    unit: "cm",
+                    unit: "ml/min/1,73m2",
                     system: "http://unitsofmeasure.org",
-                    code: "cm"
+                    code: "ml/min/1,73m2"
                 }
             }, {
                 headers: headers
@@ -389,7 +389,7 @@ function PostForm() {
     return (
         <div className="formPatient">
             <img id="logo" src={logo} alt="logo"/>
-            <a href="../dashboard"><img id="logo" src={logo} alt="logo"/></a>
+            <a href="../profil"><img id="logo" src={logo} alt="logo"/></a>
             <ul>
                 <li >
                     <a href="./profil">Mon Profil</a>
@@ -419,9 +419,9 @@ function PostForm() {
             <form>
 
                 <input onChange={(e)=>handle(e)} value={data.glycemie} type="number" id="glycemie" placeholder="Hémoglobine glyquée"/>
-                <input onChange={(e)=>handle(e)} value={data.filtration} type="text" id="GFR" placeholder="Taux de filtration glomérulaire"/>
-                <input onChange={(e)=>handle(e)} value={data.densite} type="text" id="imagingResult" placeholder="Densité osseuse"/>
-                <input onChange={(e)=>handle(e)} value={data.pouls} type="text" id="glycemie2" placeholder="Oximétrie de pouls"/>
+                <input onChange={(e)=>handle(e)} value={data.filtration} type="text" id="filtration" placeholder="Taux de filtration glomérulaire"/>
+                <input onChange={(e)=>handle(e)} value={data.densite} type="text" id="densite" placeholder="Densité osseuse"/>
+                <input onChange={(e)=>handle(e)} value={data.pouls} type="text" id="pouls" placeholder="Oximétrie de pouls"/>
                 <div id="WrongGlycemie"></div>
             </form>
             <div id="success"></div>
