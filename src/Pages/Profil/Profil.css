@@ -13,7 +13,7 @@
 }
 
 .infoPerso{
-    width: 50%;
+    min-width: 50% !important;
     border-right: 10px solid white;
 }
 
@@ -32,6 +32,19 @@ p#first{
     font-weight: bold;
     font-size: 1.5em;
     margin-top: 5vh;
+}
+
+#buttonDelete{
+    width: auto;
+    margin-top: 20px;
+    padding: 1rem;
+    background-color: #df4759;
+}
+
+#buttonDelete:hover{
+    background-color: #EBF5F7;
+    color: #df4759;
+    border-color: #df4759;
 }
 
 .diagnostic{

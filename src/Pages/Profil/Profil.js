@@ -106,12 +106,12 @@ function ProfilPage() {
                         <p><i>Médecin référent</i></p>
                         <p>Alda Mayer</p>
                     </div>
-                    <div className="deleteButton">
+                    <div className="champProfil">
                         <button id="buttonDelete" onClick={(e)=> deleteMyProfile(e)}>Supprimer mon profil</button>
                     </div>
                 </div>
                 <div className="diagnostic">
-                    <button>Accéder au diagnostic</button>
+                    <button onClick={() => window.location.replace("http://localhost:3000/diagnostic")}>Accéder au diagnostic</button>
                 </div>
             </div>
         </div>
