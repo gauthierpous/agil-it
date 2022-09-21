@@ -41,3 +41,14 @@
     width: 100%;
     font-size: 1.2em;
 }
+
+#buttonContainer a{
+    text-decoration: none;
+    color: #EBF5F7;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#buttonContainer a:hover{
+    text-decoration: underline;
+}

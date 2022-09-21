@@ -42,7 +42,7 @@ function MainForm() {
     }
         return (
             <div className="bodyMain">
-                <img src={logo} id="logo" alt="logo"/>
+                <a href="../profil"><img id="logo" src={logo} alt="logo"/></a>
                 <form className="formConnexion">
                         <input
                             onChange={(e) => handle(e)}
@@ -62,7 +62,9 @@ function MainForm() {
 
 
                     <div id="buttonContainer">
-                        <button onClick={(e) => submit(e)}>Se connecter</button>
+                        <button onClick={(e) => submit(e)}>Connexion</button>
+                        <br /><br />
+                        <a href='http://localhost:3000/inscription'>Je n'ai pas de compte</a>
                     </div>
                     <div id="WrongLogin"></div>
                 </form>
