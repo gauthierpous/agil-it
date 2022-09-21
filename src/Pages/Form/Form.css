@@ -159,3 +159,6 @@ img#notification, #notif2{
     top: 10px;
     right: 0;
 }
+#WrongGlycemie {
+    color: red;
+}
