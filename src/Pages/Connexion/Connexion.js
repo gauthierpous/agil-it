@@ -25,7 +25,7 @@ function MainForm() {
         e.preventDefault()
         if (data.email === "bastien.dubois@gmail.com") {
             if (data.password === "1234") {
-                localStorage.setItem("id", "1234")
+                localStorage.setItem("id", "patientGroupeMarisolLucas")
                 window.location.replace(`http://localhost:3000/profil`)
             } else {
                 ReactDOM.render(

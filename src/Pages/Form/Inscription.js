@@ -10,13 +10,13 @@ function RegistrationForm() {
     const url2="https://fhir.alliance4u.io/api/practitioner"
 
     const [practitionerNames, setPractitionerNames] = useState([]);
-    const [selected, setSelected] = useState("Qui est votre médecin référent ?");
+    const [selected, setSelected] = useState("f201");
     const [myPractitionerName, setMyPractitionerName] = useState([]);
 
     const [data, setData] = useState({
         nom: "",
         prenom: "",
-        genre: "",
+        genre: "male",
         dateDeNaissance: "",
         email: ""
     })

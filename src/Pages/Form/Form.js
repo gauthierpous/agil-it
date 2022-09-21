@@ -6,8 +6,9 @@ import logo from '../../logo.png'
 
 function PostForm() {
 
-    const url="https://fhir.alliance4u.io/"
-    const id = localStorage.getItem("id")
+    const url="https://fhir.alliance4u.io/api/observation"
+
+    var headers = { "Content-Type": "application/json" };
 
     const [data, setData] = useState({
         poids:"",
@@ -20,36 +21,337 @@ function PostForm() {
         pouls:""
     })
 
-
     //Function to send the entered data to the server via the API
     function submit(e){
         e.preventDefault();
-        Axios.post(url + id,{
-            poids: data.poids,
-            taille:data.taille,
-            tension:data.tension,
-            temperature:data.temperature,
-            glycemie:data.glycemie,
-            filtration:data.filtration,
-            densite:data.densite,
-            pouls:data.pouls
-        })
-            .then(res=>{
-                if (res.data) {
-                    console.log("Success")
-                ReactDOM.render(
-                    <p>Données envoyées</p>,
-                    document.getElementById("success")
-                )
+        if (data.glycemie !== "") {
+            Axios.post(url,{
+                resourceType: "Observation",
+                status: "final",
+                code: {
+                    coding: [
+                        {
+                            display: "Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum or Plasma by Creatinine-based formula (MDRD)"
+                        }
+                    ]
+                },
+                subject: {
+                    reference: "patientGroupeMarisolLucas",
+                    display: "Bastien Dubois"
+                },
+                issued: "2022-06-16T10:21:08-07:00",
+                performer: [
+                    {
+                        reference: "f-201",
+                        display: "Alda Mayer"
+                    }
+                ],
+                effectiveDateTime : "2022-06-16T10:21:08-07:00",
+                valueQuantity: {
+                    value: Number(data.glycemie),
+                    unit: "%",
+                    system: "http://unitsofmeasure.org",
+                    code: "%"
                 }
-                else {
-                    console.log("Error")
-                    ReactDOM.render(
-                        <p>Données non envoyées</p>,
-                        document.getElementById("error")
-                    )
-                }
+            }, {
+                headers: headers
             })
+                .then(res=>{
+                    if (res.data) {
+                        console.log("Success")
+                    }
+                    else {
+                        console.log("Error")
+                    }
+                })
+        }
+        if (data.poids !== "") {
+            Axios.post(url,{
+                resourceType: "Observation",
+                status: "final",
+                code: {
+                    coding: [
+                        {
+                            display: "Poids"
+                        }
+                    ]
+                },
+                subject: {
+                    reference: "patientGroupeMarisolLucas",
+                    display: "Bastien Dubois"
+                },
+                issued: "2022-06-16T10:21:08-07:00",
+                performer: [
+                    {
+                        reference: "f-201",
+                        display: "Alda Mayer"
+                    }
+                ],
+                effectiveDateTime : "2022-06-16T10:21:08-07:00",
+                valueQuantity: {
+                    value: Number(data.poids),
+                    unit: "kg",
+                    system: "http://unitsofmeasure.org",
+                    code: "kg"
+                }
+            }, {
+                headers: headers
+            })
+                .then(res=>{
+                    if (res.data) {
+                        console.log("Success")
+                    }
+                    else {
+                        console.log("Error")
+                    }
+                })
+        }
+        if (data.taille !== "") {
+            Axios.post(url,{
+                resourceType: "Observation",
+                status: "final",
+                code: {
+                    coding: [
+                        {
+                            display: "Taille"
+                        }
+                    ]
+                },
+                subject: {
+                    reference: "patientGroupeMarisolLucas",
+                    display: "Bastien Dubois"
+                },
+                issued: "2022-06-16T10:21:08-07:00",
+                performer: [
+                    {
+                        reference: "f-201",
+                        display: "Alda Mayer"
+                    }
+                ],
+                effectiveDateTime : "2022-06-16T10:21:08-07:00",
+                valueQuantity: {
+                    value: Number(data.taille),
+                    unit: "cm",
+                    system: "http://unitsofmeasure.org",
+                    code: "cm"
+                }
+            }, {
+                headers: headers
+            })
+                .then(res=>{
+                    if (res.data) {
+                        console.log("Success")
+                    }
+                    else {
+                        console.log("Error")
+                    }
+                })
+        }
+        if (data.filtration !== "") {
+            Axios.post(url,{
+                resourceType: "Observation",
+                status: "final",
+                code: {
+                    coding: [
+                        {
+                            display: "Taux de filtration glomérulaire"
+                        }
+                    ]
+                },
+                subject: {
+                    reference: "patientGroupeMarisolLucas",
+                    display: "Bastien Dubois"
+                },
+                issued: "2022-06-16T10:21:08-07:00",
+                performer: [
+                    {
+                        reference: "f-201",
+                        display: "Alda Mayer"
+                    }
+                ],
+                effectiveDateTime : "2022-06-16T10:21:08-07:00",
+                valueQuantity: {
+                    value: Number(data.filtration),
+                    unit: "cm",
+                    system: "http://unitsofmeasure.org",
+                    code: "cm"
+                }
+            }, {
+                headers: headers
+            })
+                .then(res=>{
+                    if (res.data) {
+                        console.log("Success")
+                    }
+                    else {
+                        console.log("Error")
+                    }
+                })
+        }
+        if (data.tension !== "") {
+            Axios.post(url,{
+                resourceType: "Observation",
+                status: "final",
+                code: {
+                    coding: [
+                        {
+                            display: "Tension artérielle"
+                        }
+                    ]
+                },
+                subject: {
+                    reference: "patientGroupeMarisolLucas",
+                    display: "Bastien Dubois"
+                },
+                issued: "2022-06-16T10:21:08-07:00",
+                performer: [
+                    {
+                        reference: "f-201",
+                        display: "Alda Mayer"
+                    }
+                ],
+                effectiveDateTime : "2022-06-16T10:21:08-07:00",
+                valueQuantity: {
+                    value: Number(data.tension),
+                    unit: "mmHg",
+                    system: "http://unitsofmeasure.org",
+                    code: "mmHg"
+                }
+            }, {
+                headers: headers
+            })
+                .then(res=>{
+                    if (res.data) {
+                        console.log("Success")
+                    }
+                    else {
+                        console.log("Error")
+                    }
+                })
+        }
+        if (data.densite !== "") {
+            Axios.post(url,{
+                resourceType: "Observation",
+                status: "final",
+                code: {
+                    coding: [
+                        {
+                            display: "Densité osseuse"
+                        }
+                    ]
+                },
+                subject: {
+                    reference: "patientGroupeMarisolLucas",
+                    display: "Bastien Dubois"
+                },
+                issued: "2022-06-16T10:21:08-07:00",
+                performer: [
+                    {
+                        reference: "f-201",
+                        display: "Alda Mayer"
+                    }
+                ],
+                effectiveDateTime : "2022-06-16T10:21:08-07:00",
+                valueQuantity: {
+                    value: Number(data.densite),
+                    unit: "g/cm2",
+                    system: "http://unitsofmeasure.org",
+                    code: "g/cm2"
+                }
+            }, {
+                headers: headers
+            })
+                .then(res=>{
+                    if (res.data) {
+                        console.log("Success")
+                    }
+                    else {
+                        console.log("Error")
+                    }
+                })
+        }
+        if (data.temperature !== "") {
+            Axios.post(url,{
+                resourceType: "Observation",
+                status: "final",
+                code: {
+                    coding: [
+                        {
+                            display: "Température"
+                        }
+                    ]
+                },
+                subject: {
+                    reference: "patientGroupeMarisolLucas",
+                    display: "Bastien Dubois"
+                },
+                issued: "2022-06-16T10:21:08-07:00",
+                performer: [
+                    {
+                        reference: "f-201",
+                        display: "Alda Mayer"
+                    }
+                ],
+                effectiveDateTime : "2022-06-16T10:21:08-07:00",
+                valueQuantity: {
+                    value: Number(data.temperature),
+                    unit: "Degré Celsius",
+                    system: "http://unitsofmeasure.org",
+                    code: "Degré Celsius"
+                }
+            }, {
+                headers: headers
+            })
+                .then(res=>{
+                    if (res.data) {
+                        console.log("Success")
+                    }
+                    else {
+                        console.log("Error")
+                    }
+                })
+        }
+        if (data.pouls !== "") {
+            Axios.post(url,{
+                resourceType: "Observation",
+                status: "final",
+                code: {
+                    coding: [
+                        {
+                            display: "Oximétrie de pouls"
+                        }
+                    ]
+                },
+                subject: {
+                    reference: "patientGroupeMarisolLucas",
+                    display: "Bastien Dubois"
+                },
+                issued: "2022-06-16T10:21:08-07:00",
+                performer: [
+                    {
+                        reference: "f-201",
+                        display: "Alda Mayer"
+                    }
+                ],
+                effectiveDateTime : "2022-06-16T10:21:08-07:00",
+                valueQuantity: {
+                    value: Number(data.pouls),
+                    unit: "bpm",
+                    system: "http://unitsofmeasure.org",
+                    code: "bpm"
+                }
+            }, {
+                headers: headers
+            })
+                .then(res=>{
+                    if (res.data) {
+                        console.log("Success")
+                    }
+                    else {
+                        console.log("Error")
+                    }
+                })
+        }
     }
 
     //Function to store the user's input in value
@@ -66,42 +368,19 @@ function PostForm() {
             <img src={logo} alt="logo"/>
             <h1>Renseignez les informations</h1>
             <form>
-                <input onChange={(e)=>handle(e)} value={data.poids} type="text" id="poids" placeholder="Poids" required/>
-                <input onChange={(e)=>handle(e)} value={data.taille} type="text" id="taille" placeholder="Taille" required/>
+                <input onChange={(e)=>handle(e)} value={data.poids} type="text" id="poids" placeholder="Poids (kg)" required/>
+                <input onChange={(e)=>handle(e)} value={data.taille} type="text" id="taille" placeholder="Taille (cm)" required/>
                 <input onChange={(e)=>handle(e)} value={data.tension} type="text" id="tension" placeholder="Tension artérielle" required/>
                 <input onChange={(e)=>handle(e)} value={data.temperature} type="text" id="temperature" placeholder="Température" required/>
             </form>
 
             <form>
 
-                {/*Champs : glycémie,
-                estimated GFR
-                Imaging results like bone density or fetal measurements
-                Clinical Findings* such as abdominal tenderness
-                Device measurements such as EKG data or Pulse Oximetry data
-                Clinical assessment tools such as APGAR or a Glasgow Coma Score
-                Personal characteristics: such as eye-color
-                Social history like tobacco use, family support, or cognitive status
-                Envoi du formulaire d'analyse (exemple : glucose)*/}
-
-                <input onChange={(e)=>handle(e)} value={data.glycemie} type="text" id="glycemie" placeholder="Glycémie" required/>
+                <input onChange={(e)=>handle(e)} value={data.glycemie} type="number" id="glycemie" placeholder="Glycémie" required/>
                 <input onChange={(e)=>handle(e)} value={data.filtration} type="text" id="GFR" placeholder="Taux de filtration glomérulaire" required/>
                 <input onChange={(e)=>handle(e)} value={data.densite} type="text" id="imagingResult" placeholder="Densité osseuse" required/>
                 <input onChange={(e)=>handle(e)} value={data.pouls} type="text" id="glycemie2" placeholder="Oximétrie de pouls" required/>
 
-                {/*<br /><br /><br /><br /><br />*/}
-                {/*<input onChange={(e)=>handle(e)} id="name" value={data.name} placeholder="Username*" type="text" autoComplete="on" required></input>*/}
-                {/*<input onChange={(e)=>handle(e)} id="firstname" value={data.firstname} placeholder="First name" type="text"></input>*/}
-                {/*<input onChange={(e)=>handle(e)} id="lastname" value={data.lastname} placeholder="Last name" type="text"></input>*/}
-                {/*<input onChange={(e)=>handle(e)} id="date" value={data.date} placeholder="Date of Birth" type="date"></input>*/}
-                {/*<input onChange={(e)=>handle(e)} id="password" value={data.password} placeholder="Password*" required style={{marginBottom:'10px'}}></input>*/}
-
-                {/*<input onChange={(e)=>handle(e)} id="email" value={data.email} placeholder="Email*" type="email" required style={{marginTop:'100px'}}></input>*/}
-                {/*<input onChange={(e)=>handle(e)} id="phone" value={data.phone} placeholder="Phone" type="tel" pattern="[0-9]{11}"></input>*/}
-
-                {/*<div id='Err'></div>*/}
-
-                {/*<br /><br />*/}
             </form>
             <div id="success"></div>
             <div id="error"></div>
