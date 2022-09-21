@@ -7,6 +7,7 @@
 
 table{
     width: 80%;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -22,6 +23,22 @@ table tr{
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+tr.rowHistorique:nth-child(2n){
+    padding: 10px 0;
+    background-color: #016D77;
+    line-height: revert;
+}
+
+tr.rowHistorique:nth-child(2n-1){
+    padding: 10px 0;
+    background-color: #83C4BD;
+}
+
+tr.rowHistorique td:nth-child(1), tr.rowHistorique td:nth-child(2){
+    color: #EBF5F7;
 }
 
 /*ul#historique p{
@@ -45,6 +62,7 @@ td, th {
 
 tr#titre{
     padding-bottom: 25px;
+    font-size: 1.2em;
 }
 
  ul#navbar {

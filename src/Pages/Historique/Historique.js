@@ -74,7 +74,7 @@ function DonneesVitales() {
                 </tr>
 
                 {diagnostics.map((item, index) => (
-                        <tr>
+                        <tr className="rowHistorique">
                             <td>{item.resultsInterpreter[0].display}</td>
                             <td>{item.conclusion}</td>
                             <td>
