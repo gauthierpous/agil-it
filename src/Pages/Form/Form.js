@@ -183,9 +183,9 @@ function PostForm() {
                 effectiveDateTime : "2022-06-16T10:21:08-07:00",
                 valueQuantity: {
                     value: Number(data.filtration),
-                    unit: "cm",
+                    unit: "ml/min/1,73m2",
                     system: "http://unitsofmeasure.org",
-                    code: "cm"
+                    code: "ml/min/1,73m2"
                 }
             }, {
                 headers: headers
