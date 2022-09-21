@@ -65,12 +65,12 @@ function DonneesVitales() {
                 </li>
             </ul>
             <a href="./profil"><img id="logo" src={logo} alt="logo"/></a>
-            <h1>Historique des diagnostics</h1>
+            <h1>Historique des diagnostics reçus</h1>
             <table id="historique">
                 <tr id="titre">
-                    <td>Médecin</td>
-                    <td>Conclusion</td>
-                    <td>Suppression</td>
+                    <th>Médecin</th>
+                    <th>Conclusion</th>
+                    <th>Suppression</th>
                 </tr>
 
                 {diagnostics.map((item, index) => (
