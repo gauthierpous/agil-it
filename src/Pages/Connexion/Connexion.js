@@ -55,7 +55,7 @@ function MainForm() {
                             onChange={(e) => handle(e)}
                             value={data.password}
                             placeholder="Mot de passe"
-                            type="text"
+                            type="password"
                             id="password"
                         ></input>
 

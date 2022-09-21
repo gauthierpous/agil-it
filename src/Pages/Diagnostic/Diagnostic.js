@@ -59,7 +59,7 @@ function Diagnostic() {
             <div className="pasDrole">
                 <div><button className="buttonDiagnostic" onClick={pasDrole}>Je ne suis pas drôle <br /> je veux mes résultats</button></div>
             </div>
-            <img src={logo} id="logo" alt="logo"/>
+            <a href="/profil"><img src={logo} id="logo" alt="logo"/></a>
             <h1>Jouons à un jeu !</h1>
 
             <div id="groupe1" className="group">

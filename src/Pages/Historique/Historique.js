@@ -66,26 +66,27 @@ function DonneesVitales() {
             </ul>
             <a href="./profil"><img id="logo" src={logo} alt="logo"/></a>
             <h1>Historique des diagnostics</h1>
-            <ul id="historique">
-                <li>
-                    <p>Médecin</p>
-                    <p><b>Conclusion</b></p>
-                </li>
+            <table id="historique">
+                <tr id="titre">
+                    <td>Médecin</td>
+                    <td>Conclusion</td>
+                    <td>Suppression</td>
+                </tr>
 
                 {diagnostics.map((item, index) => (
-                        <li>
-                            <p>{item.resultsInterpreter[0].display}</p>
-                            <p>{item.conclusion}</p>
-                            <p>
+                        <tr>
+                            <td>{item.resultsInterpreter[0].display}</td>
+                            <td>{item.conclusion}</td>
+                            <td>
                                 <button id="buttonDeleteObservation" onClick={(event) => {
                                     deleteDiagnostic(event, item.id)}}>
                                     Supprimer
                                 </button>
-                            </p>
-                        </li>
+                            </td>
+                        </tr>
                     )
                 )}
-            </ul>
+            </table>
         </div>
     );
 }
