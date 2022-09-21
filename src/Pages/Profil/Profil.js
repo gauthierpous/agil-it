@@ -60,7 +60,7 @@ function ProfilPage() {
 
     return (
         <div className="profil">
-            <a href="../dashboard"><img id="logo" src={logo} alt="logo"/></a>
+            <a href="../profil"><img id="logo" src={logo} alt="logo"/></a>
             <ul id="navbar">
                 <li id="active">
                     <a href="#">Mon Profil</a>

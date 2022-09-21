@@ -68,10 +68,10 @@ function DonneesVitales() {
             <h1>Historique des données envoyées</h1>
             <table id="historique">
                 <tr  id="titre">
-                    <td>Nom du diagnostic</td>
-                    <td>Donnée</td>
-                    <td>Valeur</td>
-                    <td> Suppression</td>
+                    <th>Nom du diagnostic</th>
+                    <th>Donnée</th>
+                    <th>Valeur</th>
+                    <th> Suppression</th>
                 </tr>
 
                 {observations.map((item, index) => (

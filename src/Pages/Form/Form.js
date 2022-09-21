@@ -389,7 +389,7 @@ function PostForm() {
     return (
         <div className="formPatient">
             <img id="logo" src={logo} alt="logo"/>
-            <a href="../dashboard"><img id="logo" src={logo} alt="logo"/></a>
+            <a href="../profil"><img id="logo" src={logo} alt="logo"/></a>
             <ul>
                 <li >
                     <a href="./profil">Mon Profil</a>
