@@ -414,7 +414,7 @@ function PostForm() {
             <div id="error"></div>
             <div id="buttonContainer"><button onClick={(e) => submit(e)}>Valider</button></div>
         </div>
-    );
+    )
 }
 
 export default PostForm;
