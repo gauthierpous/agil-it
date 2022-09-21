@@ -5,7 +5,7 @@
     margin-left: auto;
 }
 
-ul#historique{
+table{
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -17,29 +17,35 @@ ul#historique{
     font-size: 20pt;
 }
 
-ul#historique li{
+table tr{
     width: 100%;
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
 }
 
-ul#historique p{
+/*ul#historique p{
     width: auto;
 }
-
-ul#historique button{
+*/
+td button{
     width: auto !important;
     background-color: #df4759;
     padding: 10px !important;
 }
 
-ul#historique button:hover{
+td button:hover{
     background-color: #EBF5F7;
     color: #df4759;
     border-color: #df4759;
 }
+td {
+    width: 25%;
+}
 
+tr#titre{
+    padding-bottom: 25px;
+}
 
  ul#navbar {
     list-style-type: none;
@@ -80,7 +86,7 @@ ul#navbar li#active a:hover{
 }
 
 ul#navbar img#notification{
-    width: 6%;
+    width: 5%;
     position: absolute;
     top: 10px;
     right: 0;
