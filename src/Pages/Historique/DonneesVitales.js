@@ -8,87 +8,16 @@ import cloche2 from "../../cloche2.png";
 
 function DonneesVitales() {
 
-    const url="https://fhir.alliance4u.io/api/patient"
-    const url2="https://fhir.alliance4u.io/api/practitioner"
-
-    const [practitionerNames, setPractitionerNames] = useState([]);
-    const [selected, setSelected] = useState("f201");
-    const [myPractitionerName, setMyPractitionerName] = useState([]);
-
-    const [data, setData] = useState({
-        nom: "",
-        prenom: "",
-        genre: "male",
-        dateDeNaissance: "",
-        email: ""
-    })
-
-    var headers = { "Content-Type": "application/json" };
-
-    var myName = [
-        {
-            use: "official",
-            family: data.nom,
-            given: [data.prenom]
-        }
-    ];
-
-    var myPractitioner = [
-        {
-            reference: selected
-        }
-    ]
-
-    var myEmail = [
-        {
-            system: "email",
-            use: "home",
-            value: data.email
-        }
-    ]
-
-    var body = {
-        resourceType: "Patient",
-        id: "patientGroupeMarisolLucas",
-        name: myName,
-        gender: data.genre,
-        birthDate: data.dateDeNaissance,
-        generalPractitioner: myPractitioner,
-        telecom: myEmail
-    }
-
-    //Function to send the entered data to the server via the API
-    function submit(e){
-        e.preventDefault();
-        console.log("Trying to post");
-        Axios.post(url, body, {
-            headers: headers
-        })
-            .then(res=>{
-                console.log(res.data);
-                console.log("Patient créé");
-                window.location.replace(`http://localhost:3000`)
-            })
-            .catch(error => {
-                console.log(error.response);
-            })
-    }
-
-    //Function to store the user's input in value
-    function handle(e){
-        const newdata={...data}
-        newdata[e.target.id] = e.target.value
-        setData(newdata)
-        console.log(newdata)
-    }
+    const url="https://fhir.alliance4u.io/api/observation?subject.reference=patientGroupeMarisolLucas"
+    const [observations, setObservations] = useState([]);
 
     useEffect(() => {
         const asyncFn = async () => {
             try {
-                let result = await fetch(url2);
+                let result = await fetch(url);
                 result = await result.json();
-                setPractitionerNames(result);
-                console.log(practitionerNames);
+                setObservations(result);
+                console.log(result);
             } catch {
                 console.log("Error")
             }
@@ -97,10 +26,6 @@ function DonneesVitales() {
     }, []);
 
 
-    const handleChange = (event) => {
-        setSelected(event.target.value);
-    }
-
     function myFunction() {
         document.getElementById("notif2").style.display = "block";
         document.getElementById("notif").style.display = "none";
@@ -108,6 +33,15 @@ function DonneesVitales() {
     function myFunction2() {
         document.getElementById("notif").style.display = "block";
         document.getElementById("notif2").style.display = "none";
+    }
+
+    function deleteObservation(event, id) {
+        event.preventDefault();
+            Axios.delete("https://fhir.alliance4u.io/api/observation/" + id)
+                .then(res=>{
+                    console.log("Observation supprimée")
+                    window.location.replace(`http://localhost:3000/donneesVitales`)
+                })
     }
 
     return (
@@ -133,20 +67,26 @@ function DonneesVitales() {
             <img id="logo" src={logo} alt="logo"/>
             <h1>Historik de skon envoua</h1>
             <ul id="historique">
-                {/*LÀ C'EST LÀ OÙ TU VAS FAIRE LA LISTE...*/}
-                {/*SCRUM MASTER !*/}
                 <li>
                     <p>Nom du diagnostic</p>
                     <p>Donnée (genre taille)</p>
                     <p><b>Valeur donnée (Genre 276cm)</b></p>
-                    <button>Supprimer</button>
                 </li>
-                <li>
-                    <p>Nom du diagnostic</p>
-                    <p>Donnée (genre taille)</p>
-                    <p><b>Valeur donnée (Genre 276cm)</b></p>
-                    <button>Supprimer</button>
-                </li>
+
+                {observations.map((item, index) => (
+                    <li>
+                        <p>{item.resourceType}</p>
+                        <p>{item.code.coding[0].display}</p>
+                        <p>{item.valueQuantity.value} {item.valueQuantity.unit}</p>
+                        <p>
+                            <button id="buttonDeleteObservation" onClick={(event) => {
+                                deleteObservation(event, item.id)}}>
+                                Supprimer
+                            </button>
+                        </p>
+                    </li>
+                    )
+                )}
             </ul>
         </div>
     );

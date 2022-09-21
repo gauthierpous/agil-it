@@ -33,7 +33,7 @@ function PostForm() {
                 code: {
                     coding: [
                         {
-                            display: "Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum or Plasma by Creatinine-based formula (MDRD)"
+                            display: "Hémoglobine glyquée"
                         }
                     ]
                 },
@@ -354,6 +354,7 @@ function PostForm() {
                     }
                 })
         }
+        //window.location.replace('http://localhost:3000/dashboard')
     }
 
     //Function to store the user's input in value
@@ -404,7 +405,7 @@ function PostForm() {
 
             <form>
 
-                <input onChange={(e)=>handle(e)} value={data.glycemie} type="number" id="glycemie" placeholder="Glycémie" required/>
+                <input onChange={(e)=>handle(e)} value={data.glycemie} type="number" id="glycemie" placeholder="Hémoglobine glyquée" required/>
                 <input onChange={(e)=>handle(e)} value={data.filtration} type="text" id="GFR" placeholder="Taux de filtration glomérulaire" required/>
                 <input onChange={(e)=>handle(e)} value={data.densite} type="text" id="imagingResult" placeholder="Densité osseuse" required/>
                 <input onChange={(e)=>handle(e)} value={data.pouls} type="text" id="glycemie2" placeholder="Oximétrie de pouls" required/>
