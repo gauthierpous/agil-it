@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import Axios from 'axios';
 import './Form.css';
@@ -7,12 +7,18 @@ import logo from '../../logo.png'
 function RegistrationForm() {
 
     const url="https://fhir.alliance4u.io/api/patient"
+    const url2="https://fhir.alliance4u.io/api/practitioner"
+
+    const [practitionerNames, setPractitionerNames] = useState([]);
+    const [selected, setSelected] = useState("Qui est votre médecin référent ?");
+    const [myPractitionerName, setMyPractitionerName] = useState([]);
 
     const [data, setData] = useState({
         nom: "",
         prenom: "",
         genre: "",
-        dateDeNaissance: ""
+        dateDeNaissance: "",
+        email: ""
     })
 
     var headers = { "Content-Type": "application/json" };
@@ -25,15 +31,29 @@ function RegistrationForm() {
         }
     ];
 
+    var myPractitioner = [
+        {
+            reference: selected
+        }
+    ]
+
+    var myEmail = [
+        {
+            system: "email",
+            use: "home",
+            value: data.email
+        }
+    ]
+
     var body = {
         resourceType: "Patient",
         id: "patientGroupeMarisolLucas",
         name: myName,
         gender: data.genre,
-        birthDate: data.dateDeNaissance
+        birthDate: data.dateDeNaissance,
+        generalPractitioner: myPractitioner,
+        telecom: myEmail
     }
-
-
 
     //Function to send the entered data to the server via the API
     function submit(e){
@@ -60,6 +80,24 @@ function RegistrationForm() {
         console.log(newdata)
     }
 
+    useEffect(() => {
+        const asyncFn = async () => {
+            try {
+                let result = await fetch(url2);
+                result = await result.json();
+                setPractitionerNames(result);
+                console.log(practitionerNames);
+            } catch {
+                console.log("Error")
+            }
+        };
+        asyncFn();
+    }, []);
+
+
+    const handleChange = (event) => {
+       setSelected(event.target.value);
+    }
 
     return (
         <div className="registrationForm">
@@ -80,11 +118,23 @@ function RegistrationForm() {
                 </div>
                 <div className="formInput">
                     <label htmlFor="genre">Sexe</label>
-                    <input onChange={(e)=>handle(e)} type="text" id="genre" required/>
+                    <select onChange={(e)=>handle(e)} type="text" id="genre" required>
+                        <option>male</option>
+                        <option>female</option>
+                    </select>
+                </div>
+                <div className="medecinReferent">
+                    <label htmlFor="genre">Médecin référent</label>
+                    <select id="dropdown" onChange={handleChange}>
+                    {practitionerNames.map((name) => (
+                        <option label={name.name[0].family} value={name.id}></option>
+                        ))
+                    }
+                    </select>
                 </div>
                 <div className="formInput">
-                    <label htmlFor="mail">Adresse e-mail</label>
-                    <input type="mail" id="mail" required/>
+                    <label htmlFor="email">Adresse e-mail</label>
+                    <input onChange={(e)=>handle(e)} type="email" id="email" required/>
                 </div>
                 <div className="formInput">
                     <label htmlFor="motDePasse">Mot de passe</label>
