@@ -2,7 +2,7 @@
     transition: 1s
 }
 
-#groupe2, #groupe3{
+#groupe2, #groupe3, #groupe4{
     opacity: 0;
 }
 
@@ -53,8 +53,16 @@
     justify-content: space-around;
 }
 
+.group div{
+    width: 20%;
+}
+
 .buttonDiagnostic{
     font-size: 12pt !important;
     width: 100% !important;
     padding: 40px !important;
+}
+
+#groupe4 h1{
+    margin-top: 0;
 }
