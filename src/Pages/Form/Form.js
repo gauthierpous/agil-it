@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Axios from 'axios';
 import './Form.css';
 import logo from '../../logo.png'
+import cloche from "../../cloche.png";
+import cloche2 from "../../cloche2.png";
 
 function PostForm() {
 
@@ -59,11 +61,31 @@ function PostForm() {
         setData(newdata)
         console.log(newdata)
     }
-
+    function myFunction() {
+        document.getElementById("notif2").style.display = "block";
+        document.getElementById("notif").style.display = "none";
+    }
+    function myFunction2() {
+        document.getElementById("notif").style.display = "block";
+        document.getElementById("notif2").style.display = "none";
+    }
 
     return (
         <div className="formPatient">
-            <img src={logo} alt="logo"/>
+            <img id="logo" src={logo} alt="logo"/>
+            <a href="../dashboard"><img id="logo" src={logo} alt="logo"/></a>
+            <ul>
+                <li >
+                    <a href="./profil">Mon Profil</a>
+                </li>
+                <li id="active">
+                    <a href="#">Envoyer ma demande de diagnostic</a>
+                </li>
+                <li>
+                    <img id="notification" className="active" style={{display:'block'}} onClick={myFunction} src={cloche} alt={"cloche"}/>
+                    <a href="http://localhost:3000/profil"><img id="notif2" className="active" style={{display:'none'}} onClick={myFunction2}  src={cloche2} alt={"clocheRouge"}/></a>
+                </li>
+            </ul>
             <h1>Renseignez les informations</h1>
             <form>
                 <input onChange={(e)=>handle(e)} value={data.poids} type="text" id="poids" placeholder="Poids" required/>

@@ -3,6 +3,8 @@ import React, { useState, useEffect, Fragment } from "react";
 import Axios from "axios";
 import ReactDOM from "react-dom";
 import logo from "../../logo.png";
+import cloche from "../../cloche.png";
+import cloche2 from "../../cloche2.png";
 
 function ProfilPage() {
 
@@ -45,7 +47,19 @@ function ProfilPage() {
 
     return (
         <div className="profil">
-            <a href="../dashboard"><img src={logo} alt="logo"/></a>
+            <a href="../dashboard"><img id="logo" src={logo} alt="logo"/></a>
+            <ul>
+                <li id="active">
+                    <a href="#">Mon Profil</a>
+                </li>
+                <li>
+                    <a href="./dashboard">Envoyer ma demande de diagnostic</a>
+                </li>
+                <li>
+                    <a href="#"><img id="notification" src={cloche} alt={"cloche"}/></a>
+                </li>
+            </ul>
+
             <h1>Mon profil patient</h1>
             <div className="zoneProfil">
                 <div className="infoPerso">
