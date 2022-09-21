@@ -6,89 +6,18 @@ import logo from '../../logo.png'
 import cloche from "../../cloche.png";
 import cloche2 from "../../cloche2.png";
 
-function Historique() {
+function DonneesVitales() {
 
-    const url="https://fhir.alliance4u.io/api/patient"
-    const url2="https://fhir.alliance4u.io/api/practitioner"
-
-    const [practitionerNames, setPractitionerNames] = useState([]);
-    const [selected, setSelected] = useState("f201");
-    const [myPractitionerName, setMyPractitionerName] = useState([]);
-
-    const [data, setData] = useState({
-        nom: "",
-        prenom: "",
-        genre: "male",
-        dateDeNaissance: "",
-        email: ""
-    })
-
-    var headers = { "Content-Type": "application/json" };
-
-    var myName = [
-        {
-            use: "official",
-            family: data.nom,
-            given: [data.prenom]
-        }
-    ];
-
-    var myPractitioner = [
-        {
-            reference: selected
-        }
-    ]
-
-    var myEmail = [
-        {
-            system: "email",
-            use: "home",
-            value: data.email
-        }
-    ]
-
-    var body = {
-        resourceType: "Patient",
-        id: "patientGroupeMarisolLucas",
-        name: myName,
-        gender: data.genre,
-        birthDate: data.dateDeNaissance,
-        generalPractitioner: myPractitioner,
-        telecom: myEmail
-    }
-
-    //Function to send the entered data to the server via the API
-    function submit(e){
-        e.preventDefault();
-        console.log("Trying to post");
-        Axios.post(url, body, {
-            headers: headers
-        })
-            .then(res=>{
-                console.log(res.data);
-                console.log("Patient créé");
-                window.location.replace(`http://localhost:3000`)
-            })
-            .catch(error => {
-                console.log(error.response);
-            })
-    }
-
-    //Function to store the user's input in value
-    function handle(e){
-        const newdata={...data}
-        newdata[e.target.id] = e.target.value
-        setData(newdata)
-        console.log(newdata)
-    }
+    const url="https://fhir.alliance4u.io/api/diagnostic-report?subject.reference=patientGroupeMarisolLucas"
+    const [diagnostics, setDiagnostics] = useState([]);
 
     useEffect(() => {
         const asyncFn = async () => {
             try {
-                let result = await fetch(url2);
+                let result = await fetch(url);
                 result = await result.json();
-                setPractitionerNames(result);
-                console.log(practitionerNames);
+                setDiagnostics(result);
+                console.log(result);
             } catch {
                 console.log("Error")
             }
@@ -97,10 +26,6 @@ function Historique() {
     }, []);
 
 
-    const handleChange = (event) => {
-        setSelected(event.target.value);
-    }
-
     function myFunction() {
         document.getElementById("notif2").style.display = "block";
         document.getElementById("notif").style.display = "none";
@@ -108,6 +33,15 @@ function Historique() {
     function myFunction2() {
         document.getElementById("notif").style.display = "block";
         document.getElementById("notif2").style.display = "none";
+    }
+
+    function deleteDiagnostic(event, id) {
+        event.preventDefault();
+        Axios.delete("https://fhir.alliance4u.io/api/diagnostic-report/" + id)
+            .then(res=>{
+                console.log("Diagnostic supprimé")
+                window.location.replace(`http://localhost:3000/historique`)
+            })
     }
 
     return (
@@ -122,7 +56,7 @@ function Historique() {
                 <li id="active">
                     <a href="#">Diagnostics</a>
                 </li>
-                <li>
+                <li >
                     <a href="./donneesVitales">Évolutions</a>
                 </li>
                 <li>
@@ -131,25 +65,29 @@ function Historique() {
                 </li>
             </ul>
             <img id="logo" src={logo} alt="logo"/>
-            <h1>Historik de skon ressoua</h1>
+            <h1>Historique des diagnostics</h1>
             <ul id="historique">
-                {/*LÀ C'EST LÀ OÙ TU VAS FAIRE LA LISTE...*/}
-                {/*SCRUM MASTER !*/}
                 <li>
-                    <p>Nom du diagnostic</p>
-                    <p>Type Maladie (genre crampe)</p>
-                    <p><b>Valeur Maladie(Genre au poil)</b></p>
-                    <button>Supprimer</button>
+                    <p>Médecin</p>
+                    <p><b>Conclusion</b></p>
                 </li>
-                <li>
-                    <p>Nom du diagnostic</p>
-                    <p>Type Maladie (genre crampe)</p>
-                    <p><b>Valeur Maladie(Genre au poil)</b></p>
-                    <button>Supprimer</button>
-                </li>
+
+                {diagnostics.map((item, index) => (
+                        <li>
+                            <p>{item.resultsInterpreter[0].display}</p>
+                            <p>{item.conclusion}</p>
+                            <p>
+                                <button id="buttonDeleteObservation" onClick={(event) => {
+                                    deleteDiagnostic(event, item.id)}}>
+                                    Supprimer
+                                </button>
+                            </p>
+                        </li>
+                    )
+                )}
             </ul>
         </div>
     );
 }
 
-export default Historique;
+export default DonneesVitales;
